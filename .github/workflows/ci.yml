@@ -14,5 +14,5 @@ jobs:
   steps:
   - name: Checkout
     uses: actions/checkout@v2
-  - run: docker-compose -f ${{ matrix.config.compose-file }} up --detach
+  - run: docker-compose -f ${{ matrix.config.compose-file }} up -d
   - run: docker-compose ps | grep --quiet ${{ matrix.config.container-name }}
