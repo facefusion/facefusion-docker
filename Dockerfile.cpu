@@ -1,0 +1,15 @@
+FROM alpine/git as facefusion-docker
+WORKDIR /facefusion-docker
+RUN git clone https://github.com/facefusion/facefusion-docker.git .
+
+FROM python:3.10
+
+ENV GRADIO_SERVER_NAME=0.0.0.0
+WORKDIR /facefusion
+
+RUN apt-get update
+RUN apt-get install -y ffmpeg
+
+RUN git clone https://github.com/facefusion/facefusion.git .
+COPY --from=facefusion-docker /facefusion-docker/docker/requirements-docker.cpu.txt .
+RUN pip install -r requirements-docker.cpu.txt

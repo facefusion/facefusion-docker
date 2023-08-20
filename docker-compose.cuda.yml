@@ -1,0 +1,16 @@
+services:
+ facefusion-cuda:
+  build:
+   dockerfile: Dockerfile.cuda
+  command: [ 'python', 'run.py', '--execution-providers', 'cuda' ]
+  volumes:
+  - .assets/models:/facefusion/.assets/models
+  ports:
+  - 9000:7860
+  deploy:
+   resources:
+    reservations:
+     devices:
+     - driver: nvidia
+       count: -1
+       capabilities: [ gpu, video ]

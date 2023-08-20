@@ -1,0 +1,16 @@
+name: ci
+
+on: [ push, pull_request ]
+
+jobs:
+ test:
+  runs-on: ubuntu-latest
+  strategy:
+   matrix:
+    compose-file: [ 'docker-compose.cpu.yml', 'docker-compose.cuda.yml' ]
+    container-name: [ 'facefusion-cpu', 'facefusion-cuda' ]
+  steps:
+  - name: Checkout
+    uses: actions/checkout@v2
+  - run: docker-compose -f ${{ matrix.compose-file }} up --detach
+  - run: docker-compose ps | grep --quiet ${{ matrix.container-name }}
