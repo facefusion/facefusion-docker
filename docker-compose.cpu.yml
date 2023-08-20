@@ -6,4 +6,4 @@ services:
   volumes:
   - .assets/models:/facefusion/.assets/models
   ports:
-  - 8000:7860
+  - 7870:7860

@@ -6,7 +6,7 @@ services:
   volumes:
   - .assets/models:/facefusion/.assets/models
   ports:
-  - 9000:7860
+  - 7880:7860
   deploy:
    resources:
     reservations:

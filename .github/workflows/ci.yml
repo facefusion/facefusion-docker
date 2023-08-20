@@ -7,10 +7,11 @@ jobs:
   runs-on: ubuntu-latest
   strategy:
    matrix:
-    compose-file: [ 'docker-compose.cpu.yml', 'docker-compose.cuda.yml' ]
-    container-name: [ 'facefusion-cpu', 'facefusion-cuda' ]
+    config:
+    - { compose-file: 'docker-compose.cpu.yml', container-name: 'facefusion-cpu' }
+    - { compose-file: 'docker-compose.cuda.yml', container-name: 'facefusion-cuda' }
   steps:
   - name: Checkout
     uses: actions/checkout@v2
-  - run: docker-compose -f ${{ matrix.compose-file }} up --detach
-  - run: docker-compose ps | grep --quiet ${{ matrix.container-name }}
+  - run: docker-compose -f ${{ matrix.config.compose-file }} up --detach
+  - run: docker-compose ps | grep --quiet ${{ matrix.config.container-name }}

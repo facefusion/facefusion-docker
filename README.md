@@ -35,13 +35,13 @@ Usage
 Browse the `CPU` container:
 
 ```
-http://localhost:8000
+http://localhost:7870
 ```
 
 Browse the `CUDA` container:
 
 ```
-http://localhost:9000
+http://localhost:7880
 ```
 
 

@@ -12,5 +12,5 @@ RUN apt-get update
 RUN apt-get install -y ffmpeg
 
 RUN git clone https://github.com/facefusion/facefusion.git .
-COPY --from=facefusion-docker /facefusion-docker/docker/requirements-docker.cpu.txt .
+COPY --from=facefusion-docker /facefusion-docker/requirements-docker.cuda.txt .
 RUN pip install -r requirements-docker.cuda.txt
