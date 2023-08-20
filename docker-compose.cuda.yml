@@ -1,6 +1,7 @@
 services:
  facefusion-cuda:
   build:
+   context: .
    dockerfile: Dockerfile.cuda
   command: [ 'python', 'run.py', '--execution-providers', 'cuda' ]
   volumes:

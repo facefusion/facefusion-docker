@@ -1,6 +1,7 @@
 services:
  facefusion-cpu:
   build:
+   context: .
    dockerfile: Dockerfile.cpu
   command: [ 'python', 'run.py' ]
   volumes:
