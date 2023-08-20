@@ -15,4 +15,4 @@ jobs:
   - name: Checkout
     uses: actions/checkout@v2
   - run: docker-compose -f ${{ matrix.config.compose-file }} up -d
-  - run: docker-compose ps | grep --quiet ${{ matrix.config.container-name }}
+  - run: docker-compose -f ${{ matrix.config.compose-file }} ps | grep -q ${{ matrix.config.container-name }}
