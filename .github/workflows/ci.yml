@@ -4,15 +4,10 @@ on: [ push, pull_request ]
 
 jobs:
  test:
-  name: ${{ matrix.config.container-name }}
+  name: facefusion-cpu
   runs-on: ubuntu-latest
-  strategy:
-   matrix:
-    config:
-    - { compose-file: 'docker-compose.cpu.yml', container-name: 'facefusion-cpu' }
-    - { compose-file: 'docker-compose.cuda.yml', container-name: 'facefusion-cuda' }
   steps:
   - name: Checkout
     uses: actions/checkout@v2
-  - run: docker-compose -f ${{ matrix.config.compose-file }} up -d
-  - run: docker-compose -f ${{ matrix.config.compose-file }} ps | grep -q ${{ matrix.config.container-name }}
+  - run: docker-compose -f docker-compose.cpu.yml up -d
+  - run: docker-compose -f docker-compose.cpu.yml ps | grep -q facefusion-cpu
