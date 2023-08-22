@@ -10,7 +10,7 @@ FaceFusion Docker
 Installation
 ------------
 
-Clone from GitHub:
+Clone the repository:
 
 ```
 git clone https://github.com/facefusion/facefusion-docker.git
