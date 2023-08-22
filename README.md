@@ -1,7 +1,7 @@
 FaceFusion Docker
 =================
 
-> Next generation face swapper and enhancer.
+> Next-generation face swapper and enhancer.
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/facefusion/facefusion-docker/ci.yml.svg?branch=master)](https://github.com/facefusion/facefusion-docker/actions?query=workflow:ci)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -19,13 +19,13 @@ git clone https://github.com/facefusion/facefusion-docker.git
 Run the `CPU` container:
 
 ```
-docker-compose -f docker-compuse.cpu.yml up
+docker-compose -f docker-compose.cpu.yml up
 ```
 
 Run the `CUDA` container:
 
 ```
-docker-compose -f docker-compuse.cuda.yml up
+docker-compose -f docker-compose.cuda.yml up
 ```
 
 
