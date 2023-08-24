@@ -19,13 +19,13 @@ git clone https://github.com/facefusion/facefusion-docker.git
 Run the `CPU` container:
 
 ```
-docker-compose -f docker-compuse.cpu.yml up
+docker-compose -f docker-compose.cpu.yml up
 ```
 
 Run the `CUDA` container:
 
 ```
-docker-compose -f docker-compuse.cuda.yml up
+docker-compose -f docker-compose.cuda.yml up
 ```
 
 
