@@ -5,7 +5,7 @@ services:
    dockerfile: Dockerfile.cuda
   command: [ 'python', 'run.py', '--execution-providers', 'cuda' ]
   volumes:
-  - .assets/models:/facefusion/.assets/models
+  - .assets:/facefusion/.assets
   ports:
   - 7880:7860
   deploy:
