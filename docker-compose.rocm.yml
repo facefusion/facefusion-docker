@@ -1,0 +1,16 @@
+services:
+ facefusion-rocm:
+  build:
+   context: .
+   dockerfile: Dockerfile.rocm
+  command: [ 'python', 'run.py', '--execution-providers', 'rocm' ]
+  volumes:
+  - .assets:/facefusion/.assets
+  ports:
+  - 7890:7860
+  deploy:
+   resources:
+    reservations:
+     devices:
+     - driver: rocm
+       capabilities: [ gpu, video ]

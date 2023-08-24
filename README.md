@@ -28,6 +28,12 @@ Run the `CUDA` container:
 docker-compose -f docker-compose.cuda.yml up
 ```
 
+Run the `ROCM` container:
+
+```
+docker-compose -f docker-compose.rocm.yml up
+```
+
 
 Usage
 -----
@@ -42,6 +48,12 @@ Browse the `CUDA` container:
 
 ```
 http://localhost:7880
+```
+
+Browse the `ROCM` container:
+
+```
+http://localhost:7890
 ```
 
 

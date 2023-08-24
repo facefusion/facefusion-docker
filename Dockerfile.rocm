@@ -1,0 +1,17 @@
+FROM rocm/dev-ubuntu-22.04
+FROM python:3.10
+
+ENV GRADIO_SERVER_NAME=0.0.0.0
+WORKDIR /facefusion
+
+RUN apt-get update
+RUN apt-get install -y ffmpeg
+
+RUN git clone https://github.com/Microsoft/onnxruntime
+RUN bin/sh onnxruntime/dockerfiles/scripts/install_common_deps.sh
+RUN bin/sh onnxruntime/build.sh --allow_running_as_root --config Release --build_wheel --update --build --parallel --cmake_extra_defines ONNXRUNTIME_VERSION=1.5.1 --use_rocm --rocm_home=/opt/rocm
+RUN pip install /code/onnxruntime/build/Linux/Release/dist/*.whl
+
+RUN git clone https://github.com/facefusion/facefusion.git .
+RUN curl -o requirements-docker.cuda.txt https://raw.githubusercontent.com/facefusion/facefusion-docker/master/requirements-docker.rocm.txt
+RUN pip install -r requirements-docker.rocm.txt
