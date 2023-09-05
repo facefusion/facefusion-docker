@@ -1,25 +1,41 @@
-FROM rocm/dev-ubuntu-22.04
-FROM python:3.10
+FROM python:3.10 as python
+
+WORKDIR /facefusion
+
+FROM rocm/dev-ubuntu-22.04:5.4.2-complete as rocm
 
 ARG FACEFUSION_VERSION=1.0.0
-ARG ONNXRUNTIME_VERSION=1.5.1
+ARG ONNXRUNTIME_VERSION=1.15.0
 
 ENV GRADIO_SERVER_NAME=0.0.0.0
 WORKDIR /facefusion
 
 RUN apt-get update
+RUN apt-get install -y wget
+RUN apt-get install -y git
 RUN apt-get install -y ffmpeg
-RUN apt-get install -y cmake
+RUN apt-get install -y python3-dev
+RUN apt-get install -y python3-flatbuffers
 
 RUN pip install numpy
 RUN pip install flake8
 RUN pip install packaging
 RUN pip install wheel
+RUN pip install flatbuffers
 
-RUN git clone https://github.com/Microsoft/onnxruntime --branch v$ONNXRUNTIME_VERSION
-RUN onnxruntime/tools/ci_build/build.py --build_dir=build/Linux --config=Release --enable_pybind --build_wheel --parallel --skip_tests --use_migraphx
-RUN pip install onnxruntime/build/Linux/Release/dist/*.whl
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.4/cmake-3.27.4-linux-x86_64.tar.gz
+RUN tar xvf cmake-3.27.4-linux-x86_64.tar.gz
+RUN sudo mv cmake-3.27.4-linux-x86_64 /opt
+RUN sudo ln -s /opt/cmake-3.27.4-linux-x86_64/bin/cmake /usr/bin/cmake
+RUN sudo ln -s /opt/cmake-3.27.4-linux-x86_64/bin/ctest /usr/bin/ctest
 
-RUN git clone https://github.com/facefusion/facefusion.git --branch $FACEFUSION_VERSION .
-RUN curl -o requirements-docker.cuda.txt https://raw.githubusercontent.com/facefusion/facefusion-docker/master/requirements-docker.rocm.txt
+ENV PATH=/usr/bin/cmake:$PATH
+ENV PATH=/usr/bin/ctest:$PATH
+
+RUN git clone --single-branch --branch v$ONNXRUNTIME_VERSION --recursive https://github.com/Microsoft/onnxruntime
+RUN onnxruntime/tools/ci_build/build.py --allow_running_as_root --build_dir=build/Linux --config Release --build_wheel --update --build --parallel --skip_tests --cmake_extra_defines CMAKE_INSTALL_PREFIX=/usr/local/bin/cmake ONNXRUNTIME_VERSION=$ONNXRUNTIME_VERSION --use_rocm --rocm_home=/opt/rocm
+RUN pip install /facefusion/build/Linux/Release/dist/*.whl
+
+RUN git clone https://github.com/facefusion/facefusion.git --branch $FACEFUSION_VERSION /facefusion/facefusion
+RUN curl -o requirements-docker.rocm.txt https://raw.githubusercontent.com/facefusion/facefusion-docker/master/requirements-docker.rocm.txt
 RUN pip install -r requirements-docker.rocm.txt
