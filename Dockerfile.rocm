@@ -1,8 +1,4 @@
-FROM python:3.10 as python
-
-WORKDIR /facefusion
-
-FROM rocm/dev-ubuntu-22.04:5.4.2-complete as rocm
+FROM rocm/dev-ubuntu-22.04:5.4.2-complete
 
 ARG FACEFUSION_VERSION=1.0.0
 ARG ONNXRUNTIME_VERSION=1.15.0
