@@ -1,7 +1,7 @@
 FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04
 FROM python:3.10
 
-ARG FACEFUSION_VERSION=1.0.0
+ARG FACEFUSION_VERSION=1.1.0
 
 ENV GRADIO_SERVER_NAME=0.0.0.0
 WORKDIR /facefusion
