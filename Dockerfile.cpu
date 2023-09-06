@@ -9,5 +9,4 @@ RUN apt-get update
 RUN apt-get install -y ffmpeg
 
 RUN git clone https://github.com/facefusion/facefusion.git --branch $FACEFUSION_VERSION .
-RUN curl -LO https://raw.githubusercontent.com/facefusion/facefusion-docker/master/requirements-docker.cpu.txt
-RUN pip install -r requirements-docker.cpu.txt
+RUN pip install -r requirements.txt
