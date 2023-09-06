@@ -29,6 +29,7 @@ ENV PATH=/usr/bin/cmake:$PATH
 ENV PATH=/usr/bin/ctest:$PATH
 
 RUN git clone --single-branch --branch v$ONNXRUNTIME_VERSION --recursive https://github.com/Microsoft/onnxruntime
+RUN chmod +x onnxruntime/tools/ci_build/build.py
 RUN onnxruntime/tools/ci_build/build.py --allow_running_as_root --build_dir=build/Linux --config Release --build_wheel --update --build --parallel --skip_tests --cmake_extra_defines CMAKE_INSTALL_PREFIX=/usr/local/bin/cmake ONNXRUNTIME_VERSION=$ONNXRUNTIME_VERSION --use_rocm --rocm_home=/opt/rocm
 RUN pip install /facefusion/build/Linux/Release/dist/*.whl
 
