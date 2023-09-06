@@ -7,7 +7,6 @@ ENV GRADIO_SERVER_NAME=0.0.0.0
 WORKDIR /facefusion
 
 RUN apt-get update
-RUN apt-get install -y wget
 RUN apt-get install -y git
 RUN apt-get install -y ffmpeg
 RUN apt-get install -y python3-dev
@@ -19,7 +18,7 @@ RUN pip install packaging
 RUN pip install wheel
 RUN pip install flatbuffers
 
-RUN wget https://github.com/Kitware/CMake/releases/download/v3.27.4/cmake-3.27.4-linux-x86_64.tar.gz
+RUN curl -LO https://github.com/Kitware/CMake/releases/download/v3.27.4/cmake-3.27.4-linux-x86_64.tar.gz
 RUN tar xvf cmake-3.27.4-linux-x86_64.tar.gz
 RUN sudo mv cmake-3.27.4-linux-x86_64 /opt
 RUN sudo ln -s /opt/cmake-3.27.4-linux-x86_64/bin/cmake /usr/bin/cmake
@@ -34,5 +33,5 @@ RUN onnxruntime/tools/ci_build/build.py --allow_running_as_root --build_dir=buil
 RUN pip install /facefusion/build/Linux/Release/dist/*.whl
 
 RUN git clone https://github.com/facefusion/facefusion.git --branch $FACEFUSION_VERSION /facefusion/facefusion
-RUN curl -o requirements-docker.rocm.txt https://raw.githubusercontent.com/facefusion/facefusion-docker/master/requirements-docker.rocm.txt
+RUN curl -LO https://raw.githubusercontent.com/facefusion/facefusion-docker/master/requirements-docker.rocm.txt
 RUN pip install -r requirements-docker.rocm.txt
