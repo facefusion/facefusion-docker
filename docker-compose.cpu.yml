@@ -1,0 +1,10 @@
+services:
+ facefusion-cpu:
+  build:
+   context: .
+   dockerfile: Dockerfile.cpu
+  command: [ 'python', 'run.py' ]
+  volumes:
+  - .assets:/facefusion/.assets
+  ports:
+  - 7870:7860

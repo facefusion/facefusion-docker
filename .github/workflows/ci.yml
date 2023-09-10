@@ -1,0 +1,18 @@
+name: ci
+
+on: [ push, pull_request ]
+
+jobs:
+ test:
+  name: ${{ matrix.config.image-name }}
+  runs-on: ubuntu-latest
+  strategy:
+   matrix:
+    config:
+    - { docker-file: 'Dockerfile.cpu', image-name: 'facefusion-cpu' }
+  steps:
+  - name: Checkout
+    uses: actions/checkout@v2
+  - run: docker build -f ${{ matrix.config.docker-file }} -t ${{ matrix.config.image-name }} .
+  - run: docker run -d ${{ matrix.config.image-name }}
+  - run: docker ps | grep -q ${{ matrix.config.image-name }}

@@ -1,0 +1,33 @@
+FROM rocm/dev-ubuntu-22.04:5.4.2-complete
+
+ARG FACEFUSION_VERSION=1.1.0
+ARG ONNXRUNTIME_VERSION=1.15.0
+
+ENV GRADIO_SERVER_NAME=0.0.0.0
+
+RUN apt-get update
+RUN apt-get install python3-dev -y
+RUN apt-get install git -y
+RUN apt-get install ffmpeg -y
+
+RUN pip install numpy
+RUN pip install flake8
+RUN pip install packaging
+RUN pip install wheel
+
+RUN curl -L https://github.com/Kitware/CMake/releases/download/v3.27.4/cmake-3.27.4-linux-x86_64.tar.gz | tar xz -C /opt
+RUN sudo ln -sf /opt/cmake-3.27.4-linux-x86_64/bin/cmake /usr/bin/cmake
+RUN sudo ln -sf /opt/cmake-3.27.4-linux-x86_64/bin/ctest /usr/bin/ctest
+
+WORKDIR /onnxruntime
+
+RUN git clone https://github.com/Microsoft/onnxruntime --branch v$ONNXRUNTIME_VERSION --single-branch .
+RUN chmod +x /onnxruntime/tools/ci_build/build.py
+RUN /onnxruntime/tools/ci_build/build.py --allow_running_as_root --build_dir build --config Release --build_wheel --update --build --parallel --skip_tests --cmake_extra_defines ONNXRUNTIME_VERSION=$ONNXRUNTIME_VERSION --use_rocm --rocm_home /opt/rocm
+
+WORKDIR /facefusion
+
+RUN git clone https://github.com/facefusion/facefusion.git --branch $FACEFUSION_VERSION --single-branch .
+RUN pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/rocm5.4.2
+RUN pip uninstall onnxruntime -y
+RUN pip install /onnxruntime/build/Release/dist/*.whl
