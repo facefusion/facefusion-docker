@@ -1,6 +1,6 @@
 FROM python:3.10
 
-ARG FACEFUSION_VERSION=1.1.0
+ARG FACEFUSION_VERSION=1.2.0
 ENV GRADIO_SERVER_NAME=0.0.0.0
 
 WORKDIR /facefusion
@@ -9,4 +9,4 @@ RUN apt-get update
 RUN apt-get install ffmpeg -y
 
 RUN git clone https://github.com/facefusion/facefusion.git --branch $FACEFUSION_VERSION --single-branch .
-RUN pip install -r requirements.txt
+RUN python install.py --onnxruntime cpu
