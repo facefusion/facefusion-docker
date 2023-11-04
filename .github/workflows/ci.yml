@@ -5,15 +5,21 @@ on: [ push, pull_request ]
 jobs:
  test:
   name: ${{ matrix.config.image-name }}
-  runs-on: ${{ matrix.os }}
+  runs-on: ubuntu-latest
   strategy:
    matrix:
-    os: [ ubuntu-latest, windows-latest ]
     config:
     - { docker-file: 'Dockerfile.cpu', image-name: 'facefusion-cpu' }
+    - { docker-file: 'Dockerfile.cuda', image-name: 'facefusion-cuda' }
+    - { docker-file: 'Dockerfile.rocm', image-name: 'facefusion-rocm' }
   steps:
   - name: Checkout
     uses: actions/checkout@v2
-  - run: docker build -f ${{ matrix.config.docker-file }} -t ${{ matrix.config.image-name }} .
-  - run: docker run -d ${{ matrix.config.image-name }}
-  - run: docker ps | grep -q ${{ matrix.config.image-name }}
+  - name: Build
+    run: docker build -f ${{ matrix.config.docker-file }} -t ${{ matrix.config.image-name }} .
+  - name: Run
+    if: matrix.config.image-name == 'facefusion-cpu'
+    run: docker run -d ${{ matrix.config.image-name }}
+  - name: Validate
+    if: matrix.config.image-name == 'facefusion-cpu'
+    run: docker ps | grep -q ${{ matrix.config.image-name }}
