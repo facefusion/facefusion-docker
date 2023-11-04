@@ -5,9 +5,10 @@ on: [ push, pull_request ]
 jobs:
  test:
   name: ${{ matrix.config.image-name }}
-  runs-on: ubuntu-latest
+  runs-on: ${{ matrix.os }}
   strategy:
    matrix:
+    os: [ ubuntu-latest, windows-latest ]
     config:
     - { docker-file: 'Dockerfile.cpu', image-name: 'facefusion-cpu' }
   steps:
