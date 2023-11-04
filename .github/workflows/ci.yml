@@ -11,15 +11,12 @@ jobs:
     config:
     - { docker-file: 'Dockerfile.cpu', image-name: 'facefusion-cpu' }
     - { docker-file: 'Dockerfile.cuda', image-name: 'facefusion-cuda' }
-    - { docker-file: 'Dockerfile.rocm', image-name: 'facefusion-rocm' }
   steps:
   - name: Checkout
     uses: actions/checkout@v2
   - name: Build
     run: docker build -f ${{ matrix.config.docker-file }} -t ${{ matrix.config.image-name }} .
   - name: Run
-    if: matrix.config.image-name == 'facefusion-cpu'
     run: docker run -d ${{ matrix.config.image-name }}
   - name: Validate
-    if: matrix.config.image-name == 'facefusion-cpu'
     run: docker ps | grep -q ${{ matrix.config.image-name }}
