@@ -1,6 +1,6 @@
-FROM rocm/dev-ubuntu-22.04:5.7.1
+FROM rocm/dev-ubuntu-22.04:5.6
 
-ARG FACEFUSION_VERSION=2.2.1
+ARG FACEFUSION_VERSION=2.3.0
 ENV GRADIO_SERVER_NAME=0.0.0.0
 
 WORKDIR /facefusion
@@ -14,4 +14,4 @@ RUN apt-get install curl -y
 RUN apt-get install ffmpeg -y
 
 RUN git clone https://github.com/facefusion/facefusion.git --branch ${FACEFUSION_VERSION} --single-branch .
-RUN python install.py --torch rocm --onnxruntime rocm --skip-venv
+RUN python install.py --torch rocm-5.6 --onnxruntime rocm-5.6 --skip-venv
