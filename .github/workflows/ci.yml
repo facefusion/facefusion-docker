@@ -11,6 +11,8 @@ jobs:
     config:
     - { docker-file: 'Dockerfile.cpu', image-name: 'facefusion-cpu' }
     - { docker-file: 'Dockerfile.cuda', image-name: 'facefusion-cuda' }
+    - { docker-file: 'Dockerfile.tensorrt', image-name: 'facefusion-tensorrt' }
+    - { docker-file: 'Dockerfile.rocm', image-name: 'facefusion-rocm' }
   steps:
   - name: Checkout
     uses: actions/checkout@v2
