@@ -1,7 +1,7 @@
 FaceFusion Docker
 =================
 
-> Next generation face swapper and enhancer.
+> Industry leading face manipulation platform.
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/facefusion/facefusion-docker/ci.yml.svg?branch=master)](https://github.com/facefusion/facefusion-docker/actions?query=workflow:ci)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -28,7 +28,13 @@ Run the `CUDA` container:
 docker compose -f docker-compose.cuda.yml up
 ```
 
-Run the `ROCM` container:
+Run the `TensorRT` container:
+
+```
+docker compose -f docker-compose.tensorrt.yml up
+```
+
+Run the `ROCm` container:
 
 ```
 docker compose -f docker-compose.rocm.yml up
@@ -41,19 +47,25 @@ Usage
 Browse the `CPU` container:
 
 ```
-http://localhost:7870
+http://localhost:7865
 ```
 
 Browse the `CUDA` container:
 
 ```
+http://localhost:7870
+```
+
+Browse the `TensorRT` container:
+
+```
+http://localhost:7875
+```
+
+Browse the `ROCm` container:
+
+```
 http://localhost:7880
-```
-
-Browse the `ROCM` container:
-
-```
-http://localhost:7890
 ```
 
 
