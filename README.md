@@ -1,7 +1,7 @@
 FaceFusion Docker
 =================
 
-> Next generation face swapper and enhancer.
+> Industry leading face manipulation platform.
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/facefusion/facefusion-docker/ci.yml.svg?branch=master)](https://github.com/facefusion/facefusion-docker/actions?query=workflow:ci)
 ![License](https://img.shields.io/badge/license-MIT-green)
