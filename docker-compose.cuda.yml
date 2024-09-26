@@ -7,6 +7,7 @@ services:
   volumes:
   - .assets:/facefusion/.assets
   - .caches:/facefusion/.caches
+  - .jobs:/facefusion/.jobs
   ports:
   - 7870:7860
   deploy:
