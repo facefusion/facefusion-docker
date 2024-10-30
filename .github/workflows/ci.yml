@@ -4,18 +4,18 @@ on: [ push, pull_request ]
 
 jobs:
  test:
-  name: ${{ matrix.config.image-slug }}
+  name: ${{ matrix.config.display-name }}
   runs-on: ubuntu-latest
   strategy:
    matrix:
     config:
-    - { docker-file: 'Dockerfile.cpu', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-cpu' }
-    - { docker-file: 'Dockerfile.cuda', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-cuda' }
-    - { docker-file: 'Dockerfile.tensorrt', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-tensorrt' }
-    - { docker-file: 'Dockerfile.rocm', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-rocm' }
+    - { display-name: 'test-cpu', docker-file: 'Dockerfile.cpu', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-cpu' }
+    - { display-name: 'test-cuda', docker-file: 'Dockerfile.cuda', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-cuda' }
+    - { display-name: 'test-tensorrt', docker-file: 'Dockerfile.tensorrt', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-tensorrt' }
+    - { display-name: 'test-rocm', docker-file: 'Dockerfile.rocm', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-rocm' }
   steps:
   - name: Checkout
-    uses: actions/checkout@v2
+    uses: actions/checkout@v4
   - name: Build
     run: docker build -f ${{ matrix.config.docker-file }} -t ${{ matrix.config.image-slug }} .
   - name: Run
@@ -23,19 +23,19 @@ jobs:
   - name: Validate
     run: docker ps | grep -q ${{ matrix.config.image-slug }}
  deploy:
-  name: ${{ matrix.config.image-slug }}
+  name: ${{ matrix.config.display-name }}
   runs-on: ubuntu-latest
   needs: test
   strategy:
    matrix:
     config:
-    - { docker-file: 'Dockerfile.cpu', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-cpu' }
-    - { docker-file: 'Dockerfile.cuda', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-cuda' }
-    - { docker-file: 'Dockerfile.tensorrt', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-tensorrt' }
-    - { docker-file: 'Dockerfile.rocm', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-rocm' }
+    - { display-name: 'deploy-cpu', docker-file: 'Dockerfile.cpu', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-cpu' }
+    - { display-name: 'deploy-cuda', docker-file: 'Dockerfile.cuda', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-cuda' }
+    - { display-name: 'deploy-tensorrt', docker-file: 'Dockerfile.tensorrt', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-tensorrt' }
+    - { display-name: 'deploy-rocm', docker-file: 'Dockerfile.rocm', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-rocm' }
   steps:
   - name: Login
-    uses: docker/login-action@v2
+    uses: docker/login-action@v4
     with:
      username: ${{ secrets.DOCKER_USERNAME }}
      password: ${{ secrets.DOCKER_PASSWORD }}
