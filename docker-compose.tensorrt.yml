@@ -2,7 +2,7 @@ services:
  facefusion-cuda:
   build:
    context: .
-   dockerfile: Dockerfile.cuda
+   dockerfile: Dockerfile.tensorrt
   command: [ 'python', 'facefusion.py', 'run', '--execution-providers', 'tensorrt' ]
   volumes:
   - .assets:/facefusion/.assets
