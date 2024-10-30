@@ -6,7 +6,7 @@ ENV GRADIO_SERVER_NAME=0.0.0.0
 WORKDIR /facefusion
 
 RUN apt-get update
-RUN apt-get install python3.12 -y
+RUN apt-get install python3.10 -y
 RUN apt-get install python-is-python3 -y
 RUN apt-get install pip -y
 RUN apt-get install git -y
