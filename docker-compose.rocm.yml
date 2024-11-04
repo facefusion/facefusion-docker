@@ -15,4 +15,5 @@ services:
     reservations:
      devices:
      - driver: rocm
+       count: all
        capabilities: [ gpu, video ]

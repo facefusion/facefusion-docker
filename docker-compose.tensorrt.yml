@@ -1,5 +1,5 @@
 services:
- facefusion-cuda:
+ facefusion-tensorrt:
   build:
    context: .
    dockerfile: Dockerfile.tensorrt
@@ -15,4 +15,5 @@ services:
     reservations:
      devices:
      - driver: nvidia
+       count: all
        capabilities: [ gpu, video ]

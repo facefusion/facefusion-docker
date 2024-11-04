@@ -1,12 +1,13 @@
-FROM rocm/dev-ubuntu-22.04:6.2
+FROM rocm/dev-ubuntu-24.04:6.2
 
 ARG FACEFUSION_VERSION=3.0.1
 ENV GRADIO_SERVER_NAME=0.0.0.0
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
 
 WORKDIR /facefusion
 
 RUN apt-get update
-RUN apt-get install python3.10 -y
+RUN apt-get install python3.12 -y
 RUN apt-get install python-is-python3 -y
 RUN apt-get install pip -y
 RUN apt-get install git -y
