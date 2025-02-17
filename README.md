@@ -8,7 +8,7 @@ FaceFusion Docker
 [![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/master-cuda?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=master-cuda)
 [![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/master-tensorrt?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=master-tensorrt)
 [![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/master-rocm?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=master-rocm)
-![License](https://img.shields.io/badge/license-MIT-green)
+![License](https://img.shields.io/badge/license-OpenRAIL--S-green)
 
 
 Installation
