@@ -14,7 +14,7 @@ RUN apt-get install pip -y
 RUN apt-get install git -y
 RUN apt-get install curl -y
 RUN apt-get install ffmpeg -y
-RUN pip install tensorrt==10.6.0 --extra-index-url https://pypi.nvidia.com
+RUN pip install tensorrt==10.8.0.43 --extra-index-url https://pypi.nvidia.com
 
 RUN git clone https://github.com/facefusion/facefusion.git --branch ${FACEFUSION_VERSION} --single-branch .
 RUN python install.py --onnxruntime cuda --skip-conda
