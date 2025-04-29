@@ -4,11 +4,11 @@ FaceFusion Docker
 > Industry leading face manipulation platform.
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/facefusion/facefusion-docker/ci.yml.svg?branch=master)](https://github.com/facefusion/facefusion-docker/actions?query=workflow:ci)
-[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/master-cpu?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=master-cpu)
-[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/master-cuda?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=master-cuda)
-[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/master-tensorrt?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=master-tensorrt)
-[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/master-rocm?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=master-rocm)
-![License](https://img.shields.io/badge/license-MIT-green)
+[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/3.2.0-cpu?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=3.2.0-cpu)
+[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/3.2.0-cuda?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=3.2.0-cuda)
+[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/3.2.0-tensorrt?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=3.2.0-tensorrt)
+[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/3.2.0-rocm?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=3.2.0-rocm)
+![License](https://img.shields.io/badge/license-OpenRAIL--S-green)
 
 
 Installation
