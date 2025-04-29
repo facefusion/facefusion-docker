@@ -24,15 +24,16 @@ jobs:
     run: docker ps | grep -q ${{ matrix.config.image-slug }}
  deploy:
   name: ${{ matrix.config.display-name }}
-  runs-on: ubuntu-latest
+  if: github.ref == 'refs/heads/master'
   needs: test
+  runs-on: ubuntu-latest
   strategy:
    matrix:
     config:
-    - { display-name: 'deploy (cpu)', docker-file: 'Dockerfile.cpu', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-cpu' }
-    - { display-name: 'deploy (cuda)', docker-file: 'Dockerfile.cuda', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-cuda' }
-    - { display-name: 'deploy (tensorrt)', docker-file: 'Dockerfile.tensorrt', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-tensorrt' }
-    - { display-name: 'deploy (rocm)', docker-file: 'Dockerfile.rocm', image-slug: 'facefusion/facefusion:${{ github.ref_name }}-rocm' }
+    - { display-name: 'deploy (cpu)', docker-file: 'Dockerfile.cpu', image-slug: 'facefusion/facefusion:3.2.0-cpu' }
+    - { display-name: 'deploy (cuda)', docker-file: 'Dockerfile.cuda', image-slug: 'facefusion/facefusion:3.2.0-cuda' }
+    - { display-name: 'deploy (tensorrt)', docker-file: 'Dockerfile.tensorrt', image-slug: 'facefusion/facefusion:3.2.0-tensorrt' }
+    - { display-name: 'deploy (rocm)', docker-file: 'Dockerfile.rocm', image-slug: 'facefusion/facefusion:3.2.0-rocm' }
   steps:
   - name: Login
     uses: docker/login-action@v3
