@@ -4,6 +4,10 @@ services:
    context: .
    dockerfile: Dockerfile.cuda
   command: [ 'python', 'facefusion.py', 'run', '--execution-providers', 'cuda' ]
+  environment:
+  # make it work on WSL2#
+  # see https://github.com/NVIDIA/nvidia-container-toolkit/issues/148
+  - NVIDIA_DISABLE_REQUIRE=1
   volumes:
   - .assets:/facefusion/.assets
   - .caches:/facefusion/.caches
