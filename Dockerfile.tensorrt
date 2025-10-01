@@ -8,12 +8,14 @@ ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/python3.12/dist-packages/ten
 WORKDIR /facefusion
 
 RUN apt-get update
+
 RUN apt-get install python3.12 -y
 RUN apt-get install python-is-python3 -y
 RUN apt-get install pip -y
 RUN apt-get install git -y
 RUN apt-get install curl -y
 RUN apt-get install ffmpeg -y
+
 RUN pip install tensorrt==10.12.0.36 --extra-index-url https://pypi.nvidia.com
 
 RUN git clone https://github.com/facefusion/facefusion.git --branch ${FACEFUSION_VERSION} --single-branch .
