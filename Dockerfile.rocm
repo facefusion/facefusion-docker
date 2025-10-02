@@ -1,4 +1,4 @@
-FROM rocm/dev-ubuntu-24.04:6.4.4
+FROM rocm/dev-ubuntu-24.04:6.4.4-complete
 
 ARG FACEFUSION_VERSION=3.4.1
 ENV GRADIO_SERVER_NAME=0.0.0.0
