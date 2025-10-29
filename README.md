@@ -4,10 +4,10 @@ FaceFusion Docker
 > Industry leading face manipulation platform.
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/facefusion/facefusion-docker/ci.yml.svg?branch=master)](https://github.com/facefusion/facefusion-docker/actions?query=workflow:ci)
-[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/3.4.1-cpu?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=3.4.1-cpu)
-[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/3.4.1-cuda?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=3.4.1-cuda)
-[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/3.4.1-tensorrt?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=3.4.1-tensorrt)
-[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/3.4.1-rocm?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=3.4.1-rocm)
+[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/3.4.2-cpu?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=3.4.2-cpu)
+[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/3.4.2-cuda?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=3.4.2-cuda)
+[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/3.4.2-tensorrt?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=3.4.2-tensorrt)
+[![Docker Hub](https://img.shields.io/docker/v/facefusion/facefusion/3.4.2-rocm?label=docker-hub)](https://hub.docker.com/r/facefusion/facefusion/tags?name=3.4.2-rocm)
 ![License](https://img.shields.io/badge/license-OpenRAIL--S-green)
 
 
