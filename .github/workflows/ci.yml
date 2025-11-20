@@ -9,10 +9,10 @@ jobs:
   strategy:
    matrix:
     config:
-    - { display-name: 'test (cpu)', docker-file: 'Dockerfile.cpu', image-slug: 'facefusion/facefusion:3.5.0-cpu' }
-    - { display-name: 'test (cuda)', docker-file: 'Dockerfile.cuda', image-slug: 'facefusion/facefusion:3.5.0-cuda' }
-    - { display-name: 'test (tensorrt)', docker-file: 'Dockerfile.tensorrt', image-slug: 'facefusion/facefusion:3.5.0-tensorrt' }
-    - { display-name: 'test (rocm)', docker-file: 'Dockerfile.rocm', image-slug: 'facefusion/facefusion:3.5.0-rocm' }
+    - { display-name: 'test (cpu)', docker-file: 'Dockerfile.cpu', image-slug: 'facefusion/facefusion:3.5.1-cpu' }
+    - { display-name: 'test (cuda)', docker-file: 'Dockerfile.cuda', image-slug: 'facefusion/facefusion:3.5.1-cuda' }
+    - { display-name: 'test (tensorrt)', docker-file: 'Dockerfile.tensorrt', image-slug: 'facefusion/facefusion:3.5.1-tensorrt' }
+    - { display-name: 'test (rocm)', docker-file: 'Dockerfile.rocm', image-slug: 'facefusion/facefusion:3.5.1-rocm' }
   steps:
   - name: Checkout
     uses: actions/checkout@v4
@@ -30,10 +30,10 @@ jobs:
   strategy:
    matrix:
     config:
-    - { display-name: 'deploy (cpu)', docker-file: 'Dockerfile.cpu', image-slug: 'facefusion/facefusion:3.5.0-cpu' }
-    - { display-name: 'deploy (cuda)', docker-file: 'Dockerfile.cuda', image-slug: 'facefusion/facefusion:3.5.0-cuda' }
-    - { display-name: 'deploy (tensorrt)', docker-file: 'Dockerfile.tensorrt', image-slug: 'facefusion/facefusion:3.5.0-tensorrt' }
-    - { display-name: 'deploy (rocm)', docker-file: 'Dockerfile.rocm', image-slug: 'facefusion/facefusion:3.5.0-rocm' }
+    - { display-name: 'deploy (cpu)', docker-file: 'Dockerfile.cpu', image-slug: 'facefusion/facefusion:3.5.1-cpu' }
+    - { display-name: 'deploy (cuda)', docker-file: 'Dockerfile.cuda', image-slug: 'facefusion/facefusion:3.5.1-cuda' }
+    - { display-name: 'deploy (tensorrt)', docker-file: 'Dockerfile.tensorrt', image-slug: 'facefusion/facefusion:3.5.1-tensorrt' }
+    - { display-name: 'deploy (rocm)', docker-file: 'Dockerfile.rocm', image-slug: 'facefusion/facefusion:3.5.1-rocm' }
   steps:
   - name: Login
     uses: docker/login-action@v3
